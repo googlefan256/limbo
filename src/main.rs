@@ -10,7 +10,9 @@ pub fn main() {
     App::new()
         .insert_resource(NetworkSettings {
             address: "0.0.0.0:25566".parse().unwrap(),
-            connection_mode: ConnectionMode::Velocity { secret: "pasta".into() },
+            connection_mode: ConnectionMode::Velocity {
+                secret: "pasta".into(),
+            },
             ..Default::default()
         })
         .add_plugins(DefaultPlugins)
@@ -84,7 +86,8 @@ fn init_clients(
         pos.set([0.0, f64::from(SPAWN_Y) + 1.0, 0.0]);
         *game_mode = GameMode::Creative;
 
-        client.send_chat_message("ロビーサーバーです。/serverでサーバー間移動をできます。".italic());
+        client
+            .send_chat_message("ロビーサーバーです。/serverでサーバー間移動をできます。".italic());
     }
 }
 

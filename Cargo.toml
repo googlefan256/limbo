@@ -5,3 +5,9 @@ edition = "2024"
 
 [dependencies]
 valence = { git = "https://github.com/valence-rs/valence", version = "0.2.0-alpha.1" }
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
