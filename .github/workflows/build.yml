@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+permissions:
+  actions: write
+
 jobs:
   docker:
     runs-on: ${{ matrix.machine.runner }}
