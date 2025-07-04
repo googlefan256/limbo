@@ -1,5 +1,7 @@
 #![allow(clippy::type_complexity)]
 
+use std::env;
+
 use valence::interact_block::InteractBlockEvent;
 use valence::inventory::HeldItem;
 use valence::prelude::*;
@@ -7,11 +9,13 @@ use valence::prelude::*;
 const SPAWN_Y: i32 = 64;
 
 pub fn main() {
+    let addr = env::var("VALENCE_ADDR").unwrap_or("0.0.0.0:25565".into());
+    let secret = env::var("VALENCE_SECRET").unwrap_or("pasta".into());
     App::new()
         .insert_resource(NetworkSettings {
-            address: "0.0.0.0:25566".parse().unwrap(),
+            address: addr.parse().expect("Invalid address"),
             connection_mode: ConnectionMode::Velocity {
-                secret: "pasta".into(),
+                secret: secret.into(),
             },
             ..Default::default()
         })
